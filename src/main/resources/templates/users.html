@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://d2bsvk2etkq8vr.cloudfront.net/pui-css/pui-components-17.0.1.css">
+    <title>Users</title>
+    <style>
+        .content {
+            padding: 32px
+        }
+    </style>
+</head>
+<body>
+
+<div class="content">
+    <h3 class="h3 type-brand-5">Users</h3>
+    <div class="grid grid-show mbxl">
+        <div class="col">
+            <form class="form" method="POST"
+                  data-th-action="@{/}"
+                  data-th-object="${userForm}">
+                <fieldset>
+                    <div class="grid form-row">
+                        <div class="col form-col">
+                            <div class="form-unit"
+                                 data-th-classappend="${#fields.hasErrors('name')}? 'has-error'">
+                                <div class="grid grid-nogutter label-row">
+                                    <div class="col">
+                                        <label data-th-for="name">Name</label>
+                                    </div>
+                                    <div class="col col-fixed col-middle post-label"></div>
+                                </div>
+                                <div class="field-row">
+                                    <input type="text" data-th-field="*{name}"/>
+                                </div>
+                                <div class="help-row"><span
+                                        data-th-if="${#fields.hasErrors('name')}"
+                                        data-th-errors="*{name}"></span></div>
+                            </div>
+                        </div>
+                        <div class="col form-col">
+                            <div class="form-unit"
+                                 data-th-classappend="${#fields.hasErrors('email')}? 'has-error'">
+                                <div class="grid grid-nogutter label-row">
+                                    <div class="col">
+                                        <label data-th-for="email">Email</label>
+                                    </div>
+                                    <div class="col col-fixed col-middle post-label"></div>
+                                </div>
+                                <div class="field-row">
+                                    <input type="text" data-th-field="*{email}"/>
+                                </div>
+                                <div class="help-row"><span
+                                        data-th-if="${#fields.hasErrors('email')}"
+                                        data-th-errors="*{email}"></span></div>
+                            </div>
+                        </div>
+                        <div class="col form-col">
+                            <div class="form-unit"
+                                 data-th-classappend="${#fields.hasErrors('age')}? 'has-error'">
+                                <div class="grid grid-nogutter label-row">
+                                    <div class="col">
+                                        <label data-th-for="age">Age</label>
+                                    </div>
+                                    <div class="col col-fixed col-middle post-label"></div>
+                                </div>
+                                <div class="field-row">
+                                    <input type="number" data-th-field="*{age}"/>
+                                </div>
+                                <div class="help-row"><span
+                                        data-th-if="${#fields.hasErrors('age')}"
+                                        data-th-errors="*{age}"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid form-row">
+                        <div class="col form-col">
+                        </div>
+                        <div class="col form-col col-fixed">
+                            <div class="form-unit">
+                                <div class="field-row">
+                                    <div>
+                                        <button class="pui-btn pui-btn-primary-alt btn btn-primary-alt" type="reset"
+                                                aria-label="Reset"><span
+                                                class="btn-inner-content pui-btn-inner-content">リセット</span>
+                                        </button>
+                                        <button class="pui-btn pui-btn-primary btn btn-primary" type="submit"
+                                                aria-label="Submit"><span
+                                                class="btn-inner-content pui-btn-inner-content">更新</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="help-row"></div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class="grid grid-show mbxl">
+        <div class="col">
+            <ul>
+                <li data-th-each="user : ${users}">[[${user}]]</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
