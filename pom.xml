@@ -42,7 +42,7 @@
         <dependency>
             <groupId>am.ik.yavi</groupId>
             <artifactId>yavi</artifactId>
-            <version>0.0.10</version>
+            <version>0.0.13</version>
         </dependency>
         <dependency>
             <!-- org.springframework.data.web.MapDataBinder -->

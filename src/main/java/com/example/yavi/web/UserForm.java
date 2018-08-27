@@ -14,7 +14,7 @@ public interface UserForm {
 
     Validator<UserForm> validator = Validator.builder(UserForm.class)
             .constraint(UserForm::getName, "name", //
-                    c -> c.notBlank().lessThanOrEqual(20)
+                    c -> c.notBlank().emoji().lessThanOrEqual(20)
                             .codePoints(ASCII_PRINTABLE_CHARS).allIncluded())
             .constraint(UserForm::getEmail, "email", //
                     c -> c.notBlank().lessThanOrEqual(50).email())
