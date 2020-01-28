@@ -12,6 +12,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 @Controller
 public class UserController {
+
     private final List<User> users = new CopyOnWriteArrayList<>();
 
     @GetMapping("/")
@@ -23,15 +24,14 @@ public class UserController {
 
     @PostMapping("/")
     public String createUser(Model model, UserForm userForm, BindingResult result) {
-        return UserForm.validator.validateToEither(userForm)
-                .rightMap(UserForm::toUser)
-                .fold(violations -> {
-                    violations.apply(result::rejectValue);
-                    return this.users(model, userForm);
-                }, user -> {
-                    this.users.add(user);
-                    return "redirect:/";
-                });
+        return userForm.validate()
+            .fold(violations -> {
+                violations.apply(result::rejectValue);
+                return this.users(model, userForm);
+            }, user -> {
+                this.users.add(user);
+                return "redirect:/";
+            });
     }
 
 }
