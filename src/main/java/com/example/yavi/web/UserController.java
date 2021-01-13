@@ -13,7 +13,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Controller
 public class UserController {
 
-    private final List<User> users = new CopyOnWriteArrayList<>();
+	final List<User> users = new CopyOnWriteArrayList<>();
 
     @GetMapping("/")
     public String users(Model model, UserForm userForm) {

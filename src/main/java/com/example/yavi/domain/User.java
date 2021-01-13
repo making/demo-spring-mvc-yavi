@@ -1,7 +1,5 @@
 package com.example.yavi.domain;
 
-import am.ik.yavi.meta.ConstraintArguments;
-
 public class User {
 
     private final String name;
@@ -10,14 +8,25 @@ public class User {
 
     private final Integer age;
 
-    @ConstraintArguments
     User(String name, String email, Integer age) {
         this.name = name;
         this.email = email;
         this.age = age;
     }
 
-    @Override
+	public String name() {
+		return this.name;
+	}
+
+	public String email() {
+		return this.email;
+	}
+
+	public Integer age() {
+		return this.age;
+	}
+
+	@Override
     public String toString() {
         return "User{" +
             "name='" + name + '\'' +
