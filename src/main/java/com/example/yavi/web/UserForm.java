@@ -1,9 +1,7 @@
 package com.example.yavi.web;
 
-import am.ik.yavi.core.ConstraintViolations;
-import am.ik.yavi.fn.Either;
+import am.ik.yavi.core.Validated;
 import com.example.yavi.domain.User;
-import com.example.yavi.domain.UserValidator;
 
 public interface UserForm {
 
@@ -13,7 +11,7 @@ public interface UserForm {
 
     Integer getAge();
 
-    default Either<ConstraintViolations, User> validate() {
-        return UserValidator.SINGLETON.validateArgs(getName(), getEmail(), getAge());
+    default Validated<User> toUser() {
+        return User.of(getName(), getEmail(), getAge());
     }
 }
