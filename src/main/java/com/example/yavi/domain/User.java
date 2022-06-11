@@ -7,7 +7,7 @@ import am.ik.yavi.core.Validated;
 import static am.ik.yavi.constraint.charsequence.codepoints.AsciiCodePoints.ASCII_PRINTABLE_CHARS;
 
 public record User(String name, String email, Integer age) {
-	private static final ApplicativeValidator<User> validator = ValidatorBuilder.<User>of()
+	public static final ApplicativeValidator<User> validator = ValidatorBuilder.<User>of()
 			.constraint(User::name, "name", c -> c
 					.notBlank()
 					.emoji()
@@ -23,8 +23,4 @@ public record User(String name, String email, Integer age) {
 					.lessThanOrEqual(200))
 			.build()
 			.applicative();
-
-	public static Validated<User> of(String name, String email, Integer age) {
-		return validator.validate(new User(name, email, age));
-	}
 }

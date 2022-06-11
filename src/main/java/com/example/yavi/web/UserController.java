@@ -15,25 +15,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UserController {
 
-    final List<User> users = new CopyOnWriteArrayList<>();
+	final List<User> users = new CopyOnWriteArrayList<>();
 
-    @GetMapping("/")
-    public String users(Model model, UserForm userForm) {
-        model.addAttribute("userForm", userForm);
-        model.addAttribute("users", this.users);
-        return "users";
-    }
+	@GetMapping("/")
+	public String users(Model model, UserForm userForm) {
+		model.addAttribute("userForm", userForm);
+		model.addAttribute("users", this.users);
+		return "users";
+	}
 
-    @PostMapping("/")
-    public String createUser(Model model, UserForm userForm, BindingResult result) {
-        return userForm.toUser()
-                .fold(violations -> {
-                    ConstraintViolations.of(violations).apply(result::rejectValue);
-                    return this.users(model, userForm);
-                }, user -> {
-                    this.users.add(user);
-                    return "redirect:/";
-                });
-    }
+	@PostMapping("/")
+	public String createUser(Model model, UserForm userForm, BindingResult result) {
+		return UserForm.validator.validate(userForm)
+				.fold(violations -> {
+					ConstraintViolations.of(violations).apply(result::rejectValue);
+					return this.users(model, userForm);
+				}, user -> {
+					this.users.add(user);
+					return "redirect:/";
+				});
+	}
 
 }

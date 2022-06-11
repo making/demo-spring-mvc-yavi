@@ -23,8 +23,8 @@ class UserControllerTest {
 	@Test
 	void createUser_ok() throws Exception {
 		this.mockMvc.perform(post("/")
-				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
-				.content("name=making&email=making@gmail.com&age=20"))
+						.contentType(MediaType.APPLICATION_FORM_URLENCODED)
+						.content("name=making&email=making@gmail.com&age=20"))
 				.andExpect(status().isFound());
 		assertThat(userController.users).hasSize(1);
 	}
@@ -32,8 +32,8 @@ class UserControllerTest {
 	@Test
 	void createUser_ng_null() throws Exception {
 		this.mockMvc.perform(post("/")
-				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
-				.content("name=&email=&age="))
+						.contentType(MediaType.APPLICATION_FORM_URLENCODED)
+						.content("name=&email=&age="))
 				.andExpect(status().isOk())
 				.andExpect(model().attributeHasFieldErrorCode("userForm", "name", "charSequence.notBlank"))
 				.andExpect(model().attributeHasFieldErrorCode("userForm", "email", "charSequence.notBlank"))
@@ -43,8 +43,8 @@ class UserControllerTest {
 	@Test
 	void createUser_ng_invalid() throws Exception {
 		this.mockMvc.perform(post("/")
-				.contentType(MediaType.APPLICATION_FORM_URLENCODED)
-				.content("name=012345678901234567890&email=maki&age=201"))
+						.contentType(MediaType.APPLICATION_FORM_URLENCODED)
+						.content("name=012345678901234567890&email=maki&age=201"))
 				.andExpect(status().isOk())
 				.andExpect(model().attributeHasFieldErrorCode("userForm", "name", "container.lessThanOrEqual"))
 				.andExpect(model().attributeHasFieldErrorCode("userForm", "email", "charSequence.email"))
