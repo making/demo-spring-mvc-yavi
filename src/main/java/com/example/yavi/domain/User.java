@@ -2,7 +2,6 @@ package com.example.yavi.domain;
 
 import am.ik.yavi.builder.ValidatorBuilder;
 import am.ik.yavi.core.ApplicativeValidator;
-import am.ik.yavi.core.Validated;
 
 import static am.ik.yavi.constraint.charsequence.codepoints.AsciiCodePoints.ASCII_PRINTABLE_CHARS;
 
