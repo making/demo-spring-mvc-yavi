@@ -1,12 +1,12 @@
 package com.example.yavi.domain;
 
 import am.ik.yavi.builder.ValidatorBuilder;
-import am.ik.yavi.core.ApplicativeValidator;
+import am.ik.yavi.core.Validator;
 
 import static am.ik.yavi.constraint.charsequence.codepoints.AsciiCodePoints.ASCII_PRINTABLE_CHARS;
 
 public record User(String name, String email, Integer age) {
-	public static final ApplicativeValidator<User> validator = ValidatorBuilder.<User>of()
+	public static final Validator<User> validator = ValidatorBuilder.<User>of()
 			.constraint(User::name, "name", c -> c
 					.notBlank()
 					.emoji()
@@ -20,6 +20,5 @@ public record User(String name, String email, Integer age) {
 					.notNull()
 					.greaterThanOrEqual(0)
 					.lessThanOrEqual(200))
-			.build()
-			.applicative();
+			.build();
 }
