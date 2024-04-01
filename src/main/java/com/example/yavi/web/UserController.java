@@ -26,14 +26,13 @@ public class UserController {
 
 	@PostMapping("/")
 	public String createUser(Model model, UserForm userForm, BindingResult result) {
-		return UserForm.validator.validate(userForm)
-				.fold(violations -> {
-					ConstraintViolations.of(violations).apply(result::rejectValue);
-					return this.users(model, userForm);
-				}, user -> {
-					this.users.add(user);
-					return "redirect:/";
-				});
+		return UserForm.validator.validate(userForm).fold(violations -> {
+			ConstraintViolations.of(violations).apply(result::rejectValue);
+			return this.users(model, userForm);
+		}, user -> {
+			this.users.add(user);
+			return "redirect:/";
+		});
 	}
 
 }
