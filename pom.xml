@@ -65,7 +65,10 @@
 				<configuration>
 					<compilerArgs>
 						<arg>-XDcompilePolicy=simple</arg>
-						<arg>-Xplugin:ErrorProne -Xep:NullAway:ERROR -XepOpt:NullAway:AnnotatedPackages=mrs -XepExcludedPaths:(.*/test/java/.*|.*/target/generated-sources/.*)</arg>
+						<arg>-Xplugin:ErrorProne -Xep:NullAway:ERROR
+							-XepOpt:NullAway:AnnotatedPackages=com.example,org.springframework,ik.am.yavi
+							-XepOpt:NullAway:CheckOptionalEmptiness=true
+							-XepExcludedPaths:(.*/test/java/.*|.*/target/generated-sources/.*)</arg>
 					</compilerArgs>
 					<annotationProcessorPaths>
 						<path>
