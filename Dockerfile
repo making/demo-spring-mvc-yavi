@@ -25,6 +25,9 @@ RUN groupadd -g $GID $GROUPNAME && \
 RUN curl -sL -o memory-calculator.tgz https://java-buildpack.cloudfoundry.org/memory-calculator/trusty/x86_64/memory-calculator-3.13.0_RELEASE.tar.gz && \
     tar -xzf memory-calculator.tgz -C /usr/local/bin && \
     rm -f memory-calculator.tgz
+RUN curl -sL -o jattach.tgz https://github.com/jattach/jattach/releases/download/v2.2/jattach-linux-$(uname -m | sed -e 's/86_//' -e 's/aarch/arm/').tgz; \
+    tar -xzf jattach.tgz -C /usr/local/bin && \
+    rm -f jattach.tgz
 USER $USERNAME
 COPY --from=builder /opt/dependencies/ ./
 COPY --from=builder /opt/spring-boot-loader/ ./
