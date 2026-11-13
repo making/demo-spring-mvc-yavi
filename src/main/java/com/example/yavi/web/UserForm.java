@@ -3,7 +3,7 @@ package com.example.yavi.web;
 import am.ik.yavi.arguments.Arguments;
 import am.ik.yavi.core.ValueValidator;
 import com.example.yavi.domain.User;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public record UserForm(@Nullable String name, @Nullable String email, @Nullable Integer age) {
 	static ValueValidator<UserForm, User> validator = User.validator
